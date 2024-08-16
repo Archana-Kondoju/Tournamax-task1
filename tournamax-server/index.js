@@ -11,7 +11,7 @@ app.use(cors({
 )
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@to-do-list.snwtatk.mongodb.net/?retryWrites=true&w=majority&appName=to-do-list`;
+const uri = "mongodb+srv://archanakondojuk:hkQpQThYCxNSBBiF@to-do-list.snwtatk.mongodb.net/?retryWrites=true&w=majority&appName=to-do-list";
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -43,6 +43,7 @@ async function run() {
         try {
             const todos = await todoList.find({}).toArray();
             res.json(todos);
+         res.json({ message: 'Hello World' });
         } catch (error) {
             console.error('Error fetching todos:', error.message);
             res.status(500).json({ message: 'Server error' });
