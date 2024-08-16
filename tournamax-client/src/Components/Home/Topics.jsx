@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Topics = () => {
     const [tasks,setTasks]=useState([]);
     useEffect(() => {
-        fetch('https://tournamax-task1-api.vercel.app/')
+        fetch('https://tournamax-task1-api.vercel.app')
         .then(response => response.json())
         .then(data => setTasks(data))
         },
