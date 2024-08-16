@@ -8,7 +8,7 @@ export const Form = () => {
 
     useEffect(() => {
         if(id){
-            fetch(`https://tournamax-task1.vercel.app/${id}`)
+            fetch(`https://tournamax-task1-api.vercel.app/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Task not found');
@@ -32,7 +32,7 @@ export const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (title && description) {
-            const url = id ? `https://tournamax-task1.vercel.app/${id}` : `https://tournamax-task1.vercel.app/`;
+            const url = id ? `https://tournamax-task1-api.vercel.app/${id}` : `https://tournamax-task1-api.vercel.app/`;
             const method = id ? 'PUT' : 'POST';
             console.log(`Making ${method} request to: ${url}`);
             fetch(url, {
