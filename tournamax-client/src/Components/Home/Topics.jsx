@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Topics = () => {
     const [tasks,setTasks]=useState([]);
     useEffect(() => {
-        fetch('https://tournamax-task1.vercel.app/')
+        fetch('https://tournamax-task1-api.vercel.app/')
         .then(response => response.json())
         .then(data => setTasks(data))
         },
@@ -12,7 +12,7 @@ const Topics = () => {
 
     const deleteTodo = (id) =>{
         console.log(id);
-        fetch(`https://tournamax-task1.vercel.app/${id}`,{
+        fetch(`https://tournamax-task1-api.vercel.app/${id}`,{
           method:'DELETE' 
         })
           .then((res) => res.json())
