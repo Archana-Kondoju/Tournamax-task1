@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Topics = () => {
     const [tasks,setTasks]=useState([]);
     useEffect(() => {
-        fetch('https://tournamax-task1-api.vercel.app/')
+        fetch('https://tournamax-task1-apii.vercel.app/')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
