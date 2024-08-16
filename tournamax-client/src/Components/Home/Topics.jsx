@@ -4,10 +4,16 @@ import { NavLink } from 'react-router-dom';
 const Topics = () => {
     const [tasks,setTasks]=useState([]);
     useEffect(() => {
-        fetch('https://tournamax-task1-apii.vercel.app')
-        .then(response => response.json())
-        .then(data => setTasks(data))
-        },
+        fetch('https://tournamax-task1-api.vercel.app/')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error('There was a problem with your fetch operation:', error));
+    }
     )
 
     const deleteTodo = (id) =>{
