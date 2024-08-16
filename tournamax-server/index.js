@@ -6,7 +6,6 @@ require('dotenv').config()
 app.use(express.json())
 app.use(cors({
  origin:'https://tournamax-task1-ui.vercel.app' ,
-  methods:['POST','GET','PUT'],
   credentials:true
  })
 )
