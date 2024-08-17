@@ -3,16 +3,25 @@ const app = express()
 const cors= require('cors')
 const port = process.env.PORT || 3000;
 require('dotenv').config()
-app.use(express.json())
+const allowedOrigins = ['https://tournamax-task1-ui.vercel.app'];
+
 app.use(cors({
- origin:'https://tournamax-task1-ui.vercel.app' ,
-  credentials:true
- })
-)
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+// Optional: Ensure preflight requests are handled
+app.options('*', cors());
+
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://archanakondojuk:hkQpQThYCxNSBBiF@to-do-list.snwtatk.mongodb.net/?retryWrites=true&w=majority&appName=to-do-list";
-
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -43,7 +52,6 @@ async function run() {
         try {
             const todos = await todoList.find({}).toArray();
             res.json(todos);
-         res.json({ message: 'Hello World' });
         } catch (error) {
             console.error('Error fetching todos:', error.message);
             res.status(500).json({ message: 'Server error' });
@@ -87,7 +95,7 @@ async function run() {
     });
     
     app.delete("/:id",async(req,res)=>{
-      const id=req.params;
+      const id=req.params.id;
       const filter={_id: new ObjectId(id)};
       const result=await todoList.deleteOne(filter);
       res.send(result)
