@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const cors= require('cors')
 const port = process.env.PORT || 3000;
+app.use(express.json())
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'none'; img-src 'self' https://tournamax-task1-apii.vercel.app");
+  next();
+});
+
 require('dotenv').config()
 const allowedOrigins = ['https://tournamax-task1-ui.vercel.app'];
 
