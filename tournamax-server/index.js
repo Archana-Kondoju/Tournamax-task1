@@ -27,7 +27,7 @@ app.options('*', cors());
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = "mongodb+srv://archanakondojuk:hkQpQThYCxNSBBiF@to-do-list.snwtatk.mongodb.net/?retryWrites=true&w=majority&appName=to-do-list";
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
